@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const routes = require("./routes");
+const path = require("path");
 
 const PORT = process.env.PORT || 8000;
 
@@ -21,6 +22,8 @@ try {
   });
   console.log("mongo db connected");
 } catch (error) {}
+
+app.use("/files", express.static(path.resolve(__dirname, "..", "files")));
 
 //Routes
 app.use(routes);
